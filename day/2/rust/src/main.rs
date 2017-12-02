@@ -4,25 +4,25 @@ use std::fs::File;
 use std::io::BufReader;
 use std::io::BufRead;
 
-fn checksum(data: &mut [i32]) -> Result<i32, String> {
-    let max = try!(data.iter().max().ok_or("No max"));
-    let min = try!(data.iter().min().ok_or("No min"));
-    Ok(max - min)
+fn checksum(data: &mut [i32]) -> i32 {
+    let max = data.iter().max().unwrap();
+    let min = data.iter().min().unwrap();
+    max - min
 }
 
 
-fn find_quotient(data: &mut [i32]) -> Result<i32, String> {
+fn find_quotient(data: &mut [i32]) -> i32 {
     for first in 0..data.len() {
         for second in first + 1..data.len() {
             let tuple = [data[first], data[second]];
-            let max = try!(tuple.iter().max().ok_or("No max"));
-            let min = try!(tuple.iter().min().ok_or("No min"));
+            let max = tuple.iter().max().unwrap();
+            let min = tuple.iter().min().unwrap();
             if max % min == 0 {
-                return Ok(max / min);
+                return max / min;
             }
         }
     }
-    Ok(0)
+    0
 }
 
 fn read_file(filename: String) -> Result<(), io::Error> {
@@ -37,15 +37,10 @@ fn read_file(filename: String) -> Result<(), io::Error> {
             .collect();
         // println!("{:?}", data);
         let checksum = checksum(data.as_mut_slice());
-        match checksum {
-            Ok(v) => checksum_total = checksum_total + v,
-            Err(e) => println!("No checksum {}", e),
-        }
+        checksum_total = checksum_total + checksum;
+
         let quotient = find_quotient(data.as_mut_slice());
-        match quotient {
-            Ok(v) => quotient_total = quotient_total + v,
-            Err(e) => println!("No sane division found {}", e),
-        }
+        quotient_total = quotient_total + quotient;
     }
     println!("Checksum total: {}", checksum_total);
     println!("Found quotient total: {}", quotient_total);
