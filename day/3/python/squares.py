@@ -56,9 +56,13 @@ def adjust(size, start, dest_index, final_index):
 def faster_coords(dest_index):
     size = square_size(dest_index)
     layer = square_layer(size)
+    print("size {}".format(size))
+    print("layer {}".format(layer))
     # e.g. square number 3, first index is 10. Square 4, first index is 26
     square_start = pow((size - 2), 2) + 1
+    print("start square: {}".format(square_start))
     ss_coords = (size - layer), (layer - size + 1)
+    print("ss_coords: {}".format(ss_coords))
     final = adjust(size, ss_coords, square_start, dest_index)
 
     return final
@@ -116,7 +120,7 @@ def carry_data(dest_index):
     b_md = manhattan_distance((0, 0), brute_coords)
     # print("Brute force: {}, Cheat: {}".format(brute_coords, cheat_coords))
 
-    print("{} is {} away, or possibly {}".format(dest_index, b_md, c_md))
+    print("{} ({}) is {} away, or possibly {}".format(dest_index, cheat_coords, b_md, c_md))
 
 
 class Direction(Enum):
