@@ -51,7 +51,7 @@ fn read_file(filename: String) -> Result<(), io::Error> {
 
 fn main() {
     if let Some(arg1) = env::args().nth(1) {
-        let result = read_file(arg1);
+        let result = read_file(stringify!(arg1));
         match result {
             Ok(v) => println!("Result: {:?}", v),
             Err(e) => println!("error opening file: {:?}", e),
