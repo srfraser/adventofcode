@@ -66,7 +66,6 @@ fn part2(contents: &str) {
 
 
 fn reverse(data: &mut Vec<i32>, position: usize, length: usize) {
-    // let mut subvec = Vec::new();
 
     let mut subvec: Vec<i32> = data.iter()
         .cycle()
@@ -74,9 +73,7 @@ fn reverse(data: &mut Vec<i32>, position: usize, length: usize) {
         .take(length)
         .map(|s| s.clone())
         .collect();
-    // for item in data.iter().cycle().skip(position).take(length) {
-    //    subvec.push(item.clone());
-    // }
+
     subvec.reverse();
 
     let sublen = data.len();
