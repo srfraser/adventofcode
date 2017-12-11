@@ -15,16 +15,14 @@ def test_reverse(circle, position, length, expected):
 
 
 def reverse(circle, position, length):
-    """Reverse circle[position:length], wrapping to the start if required."""
-    if length > len(circle):
-        raise ValueError("Unable to reverse %d elements", length)
-    temp = (circle[position:position + length] +
-            circle[0:max((position + length) - len(circle), 0)])[::-1]
-
-    circle[position:min(len(circle), position + length)] = temp[0:len(circle) - position]
-
-    circle[0:max(position + length - len(circle), 0)] = temp[len(circle) - position:]
+    rotate(circle, -position)
+    circle[0:length] = circle[0:length][::-1]
+    rotate(circle, position)
     return circle
+
+
+def rotate(lst, x):
+    lst[:] = lst[-x:] + lst[:-x]
 
 
 def part1(data):
