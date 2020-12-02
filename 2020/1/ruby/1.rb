@@ -8,13 +8,13 @@ test_data = [
 ]
 
 def search_part1(data, target)
-  data.permutation(2).to_a.each { |a, b|
+  data.combination(2).to_a.each { |a, b|
     return [a, b].inject(:*) if a + b == target
   }
 end
 
 def search_part2(data, num_factors, target)
-  data.permutation(num_factors).to_a.each { |a|
+  data.combination(num_factors).to_a.each { |a|
     return a.inject(:*) if a.inject(:+) == target
   }
 end

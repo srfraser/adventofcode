@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from itertools import permutations
+from itertools import combinations
 from functools import reduce
 
 test_data = [
@@ -14,7 +14,7 @@ test_data = [
 
 
 def part1(data, num_factors=2, target=2020):
-    for values in permutations(data, num_factors):
+    for values in combinations(sorted(data), num_factors):
         if sum(values) == target:
             return reduce(lambda x, y: x * y, values)
 
