@@ -1,8 +1,3 @@
-class PasswordChecker
-  def initialize(password_spec)
-  end
-end
-
 def part1(data)
   valid = 0
   data.each { |d|
