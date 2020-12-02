@@ -13,7 +13,7 @@ test_data = [
 ]
 
 
-def part1(data, num_factors=2, target=2020):
+def search(data, num_factors=2, target=2020):
     for values in combinations(sorted(data), num_factors):
         if sum(values) == target:
             return reduce(lambda x, y: x * y, values)
@@ -22,8 +22,8 @@ def part1(data, num_factors=2, target=2020):
 if __name__ == "__main__":
     filename = Path(os.path.dirname(__file__)) / "../input"
     with filename.open() as f:
-        part1_data = [int(i) for i in f]
+        real_data = [int(i) for i in f]
 
-    assert part1(test_data, target=2020) == 514579
-    print("Part 1: ", part1(part1_data, target=2020))
-    print("Part 2: ", part1(part1_data, target=2020, num_factors=3))
+    assert search(test_data, target=2020) == 514579
+    print("Part 1: ", search(real_data, target=2020))
+    print("Part 2: ", search(real_data, target=2020, num_factors=3))
