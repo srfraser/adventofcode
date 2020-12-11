@@ -1,0 +1,17 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    concurrent-ruby (1.1.7)
+    i18n (1.8.5)
+      concurrent-ruby (~> 1.0)
+    ruby-enum (0.8.0)
+      i18n
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  ruby-enum
+
+BUNDLED WITH
+   2.1.4
